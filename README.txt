@@ -33,4 +33,14 @@ Restored C:\Users\urvis\source\repos\Velour Scents\Velour Scents\Velour Scents.c
 ========== Rebuild All: 1 succeeded, 0 failed, 0 skipped ==========
 ========== Rebuild completed at 11:02 AM and took 03.163 seconds ==========
 
- 
+ Finally going to push on git hub
+ Enumerating objects: 131, done.
+Counting objects: 100% (131/131), done.
+Delta compression using up to 18 threads
+Compressing objects: 100% (124/124), done.
+Writing objects: 100% (131/131), 1.20 MiB | 546.00 KiB/s, done.
+Total 131 (delta 37), reused 0 (delta 0), pack-reused 0 (from 0)
+remote: Resolving deltas: 100% (37/37), done.
+To https://github.com/u140696/VelourScents.git
+ * [new branch]      main -> main
+branch 'main' set up to track 'origin/main'.

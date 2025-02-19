@@ -1,4 +1,4 @@
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using Velour_Scents.Models;
 
@@ -19,6 +19,12 @@ namespace Velour_Scents.Controllers
         }
 
         public IActionResult Privacy()
+        {
+            return View();
+        }
+
+        // ✅ New "About Us" Page
+        public IActionResult AboutUs()
         {
             return View();
         }
