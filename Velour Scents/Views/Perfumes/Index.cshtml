@@ -1,0 +1,50 @@
+﻿@model IEnumerable<Velour_Scents.Models.Perfume>
+
+@{
+    ViewData["Title"] = "Perfume Collection";
+}
+
+<h2 class="text-center">Perfume Collection</h2>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Add New Perfume</a>
+</p>
+
+<table class="table table-bordered table-hover">
+    <thead class="thead-dark">
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.Name)</th>
+            <th>@Html.DisplayNameFor(model => model.Brand)</th>
+            <th>@Html.DisplayNameFor(model => model.FragranceNotes)</th>
+            <th>@Html.DisplayNameFor(model => model.Price)</th>
+            <th>@Html.DisplayNameFor(model => model.ImageUrl)</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                <td>@Html.DisplayFor(modelItem => item.Brand)</td>
+                <td>@Html.DisplayFor(modelItem => item.FragranceNotes)</td>
+                <td>@item.Price.ToString("C")</td> <!-- Formats as currency -->
+                <td>
+                    @if (!string.IsNullOrEmpty(item.ImageUrl))
+                    {
+                        <img src="@item.ImageUrl" alt="Perfume Image" width="80" height="80" class="rounded" />
+                    }
+                    else
+                    {
+                        <span>No Image</span>
+                    }
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning btn-sm">Edit</a>
+                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info btn-sm">Details</a>
+                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
