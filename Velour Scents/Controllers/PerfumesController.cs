@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Velour_Scents.Data;
 using Velour_Scents.Models;
+using System.Threading.Tasks;
+using System.Linq;
 
 namespace Velour_Scents.Controllers
 {
@@ -19,13 +17,12 @@ namespace Velour_Scents.Controllers
             _context = context;
         }
 
-        // GET: Perfumes
+        // ✅ Anyone Can View Products
         public async Task<IActionResult> Index()
         {
             return View(await _context.Perfumes.ToListAsync());
         }
 
-        // GET: Perfumes/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -33,8 +30,7 @@ namespace Velour_Scents.Controllers
                 return NotFound();
             }
 
-            var perfume = await _context.Perfumes
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var perfume = await _context.Perfumes.FirstOrDefaultAsync(m => m.Id == id);
             if (perfume == null)
             {
                 return NotFound();
@@ -43,15 +39,14 @@ namespace Velour_Scents.Controllers
             return View(perfume);
         }
 
-        // GET: Perfumes/Create
+        // ✅ Only Admin Can Create Products
+        [Authorize(Roles = "Administrator")]
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Perfumes/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "Administrator")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Name,Brand,FragranceNotes,Price,ImageUrl")] Perfume perfume)
@@ -65,7 +60,8 @@ namespace Velour_Scents.Controllers
             return View(perfume);
         }
 
-        // GET: Perfumes/Edit/5
+        // ✅ Only Admin Can Edit Products
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -81,9 +77,7 @@ namespace Velour_Scents.Controllers
             return View(perfume);
         }
 
-        // POST: Perfumes/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "Administrator")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Brand,FragranceNotes,Price,ImageUrl")] Perfume perfume)
@@ -116,7 +110,8 @@ namespace Velour_Scents.Controllers
             return View(perfume);
         }
 
-        // GET: Perfumes/Delete/5
+        // ✅ Only Admin Can Delete Products
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -124,8 +119,7 @@ namespace Velour_Scents.Controllers
                 return NotFound();
             }
 
-            var perfume = await _context.Perfumes
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var perfume = await _context.Perfumes.FirstOrDefaultAsync(m => m.Id == id);
             if (perfume == null)
             {
                 return NotFound();
@@ -134,7 +128,7 @@ namespace Velour_Scents.Controllers
             return View(perfume);
         }
 
-        // POST: Perfumes/Delete/5
+        [Authorize(Roles = "Administrator")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
