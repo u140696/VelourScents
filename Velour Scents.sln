@@ -7,6 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Velour Scents", "Velour Sce
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{6733EA54-DE80-4217-9870-94B91B08110B}"
 	ProjectSection(SolutionItems) = preProject
+		Velour Scents\README.md = Velour Scents\README.md
 		README.txt = README.txt
 	EndProjectSection
 EndProject
